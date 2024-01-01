@@ -1,0 +1,27 @@
+const CategoriesDB = [
+   { id: 0, categoryName: 'All' },
+    { id: 1, categoryName: 'Technology' },
+    { id: 2, categoryName: 'Programming' },
+    { id: 3, categoryName: 'Web Development' },
+    { id: 4, categoryName: 'Design' },
+    { id: 5, categoryName: 'Data Science' },
+    { id: 6, categoryName: 'Artificial Intelligence' },
+    { id: 7, categoryName: 'Machine Learning' },
+    { id: 8, categoryName: 'Blockchain' },
+    { id: 9, categoryName: 'Mobile Development' },
+    { id: 10, categoryName: 'Software Engineering' },
+    // { id: 11, categoryName: 'Productivity' },
+    // { id: 12, categoryName: 'Career' },
+    // { id: 13, categoryName: 'Personal Development' },
+    // { id: 14, categoryName: 'Health' },
+    // { id: 15, categoryName: 'Travel' },
+    // { id: 16, categoryName: 'Food' },
+    // { id: 17, categoryName: 'Fashion' },
+    // { id: 18, categoryName: 'Entertainment' },
+    // { id: 19, categoryName: 'Science' },
+    // { id: 20, categoryName: 'Education' },
+    // { id: 21, categoryName: 'Finance' },
+    // { id: 22, categoryName: 'Sports' },
+  ];
+  
+export default CategoriesDB;
