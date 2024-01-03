@@ -7,6 +7,9 @@ import { useDispatch } from 'react-redux'
 import { addPosts } from "../../features/Posts/postsSlice";
 
 import PostsDB from './TempDataBase/PostsDB'
+import Footer from "./Footer";
+
+import { Box } from "@chakra-ui/react";
 
 export const Main = () => {
     const [selectedCategoryId, setSelectedCategoryId] = useState(null);
@@ -27,11 +30,12 @@ export const Main = () => {
     }, [dispatch]);
 
   return (
-    <>
+    <Box minHeight="100vh" display="flex" flexDirection="column">
     <Header/>
     <Categories sendSelectedCategoryId={handleCategorySelection}/>
     <Posts selectedCat={selectedCategoryId}/>
-    </>
+    <Footer/>
+    </Box>
   )
 }
 export default Main;
