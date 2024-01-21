@@ -20,8 +20,12 @@ import {
   Link
 } from "@chakra-ui/react";
 import { useForm } from "react-hook-form";
+import axios from "axios";
+import { getToken } from "./auth";
+import { useNavigate } from "react-router-dom";
 
 const Signup = () => {
+  const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const {
     register,
@@ -36,13 +40,28 @@ const Signup = () => {
 
   const handleSignup = (data) => {
     // Handle login logic here
-   alert(JSON.stringify(data));
+   //alert(JSON.stringify(data));
+
+   let autherObj = {
+     Name: data.Name,
+     UserName: data.Username,
+     Email: data.Email,
+     Password: data.Password,
+   };
+  //  const token = getToken();
+   axios.post('http://localhost:4000/auther/create', autherObj).then((res)=>{
+        console.log('Auther Created', res.data);
+        alert("Account is created, please login..")
+        navigate('/login')
+      }).catch((err)=>{
+        console.log('Error Create Auther');
+      })
+
   };
 
   return (
     <div>
       <Box minHeight="100vh" display="flex" flexDirection="column">
-        <Header />
         <Center flex="1" bg="white" color="white">
           <Card width="400px" p={4} my={5}>
           <form onSubmit={handleSubmit(handleSignup)}>
@@ -51,6 +70,12 @@ const Signup = () => {
             </CardHeader>
             <CardBody>
               <Stack spacing={3}>
+              <Input placeholder="Name" {...register("Name", { required: "Enter your name" })}/>
+                {errors.Name && (
+                  <p style={{ color: "red" }} role="alert">
+                    {errors.Name.message}
+                  </p>
+                )}
                 <Input placeholder="Username" {...register("Username", { required: "Enter your username" })}/>
                 {errors.Username && (
                   <p style={{ color: "red" }} role="alert">
@@ -124,7 +149,6 @@ const Signup = () => {
                 }}
                 mr={2}
               >
-                {" "}
                 Already i have account
               </Text>
             </Link>
@@ -132,7 +156,6 @@ const Signup = () => {
           </Flex>
           </Card>
         </Center>
-        <Footer />
       </Box>
     </div>
   );
