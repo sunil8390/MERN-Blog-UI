@@ -21,11 +21,11 @@ import Header from "../MainBlog/Header";
 import Footer from "../MainBlog/Footer";
 import { color } from "framer-motion";
 import { Link } from "react-router-dom";
-import axios from 'axios';
-import { setToken, getToken, removeToken, getIsLogin} from './auth'
+import axios from "axios";
+import { setToken, getToken, removeToken, getIsLogin } from "./auth";
 import Dashbaord from "../Dashboard/Dashbaord";
-import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux'
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import { SetUser, getUser } from "../../features/User/userSlice";
 
 const Login = () => {
@@ -38,8 +38,6 @@ const Login = () => {
     handleSubmit,
   } = useForm();
 
-
-
   const handleTogglePassword = () => {
     setShowPassword(!showPassword);
   };
@@ -50,20 +48,23 @@ const Login = () => {
       email: data.Username,
       password: data.Password,
     };
-  
+
     try {
-      const response = await axios.post(`http://localhost:4000/api/login`, userdata);
+      const response = await axios.post(
+        `http://localhost:4000/api/login`,
+        userdata
+      );
       console.log(`Login success response`, response.data.user);
       await setToken(response.data.token);
-  
+
       if (getIsLogin()) {
         console.log("IS login Done");
         dispatch(SetUser(response.data.user));
-        navigate('/dashboard');
+        navigate("/dashboard");
       }
     } catch (error) {
       console.log(error.response?.status);
-  
+
       if (error.response?.status === 401) {
         alert(`Credentials are incorrect`);
       }
@@ -71,7 +72,7 @@ const Login = () => {
   };
 
   return (
-    <Box minHeight="100vh" display="flex" flexDirection="column">
+    <Box minHeight="80vh" display="flex" flexDirection="column">
       <Center flex="1" bg="white" color="white">
         <Card width="400px" p={4} my={5}>
           <form onSubmit={handleSubmit(handleLogin)}>
@@ -123,7 +124,6 @@ const Login = () => {
             </CardFooter>
           </form>
           <Flex>
-            <Spacer />
             <Link to="/signup">
               <Text
                 _hover={{
