@@ -151,9 +151,8 @@ const Signup = () => {
               </CardFooter>
             </form>
             <Flex>
-              <Spacer />
               <Link to="/login">
-                <Text> Create new account</Text>
+                <Text> Already i have account</Text>
               </Link>
             </Flex>
           </Card>
